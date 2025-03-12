@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- For radar chart -->
+</head>
+<body>
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-analytics.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+      
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+          apiKey: "AIzaSyBt1Yznxen3pbSvK0hQRFSUaLQzCZgnuJA",
+          authDomain: "portfolio-b4aec.firebaseapp.com",
+          projectId: "portfolio-b4aec",
+          storageBucket: "portfolio-b4aec.firebasestorage.app",
+          messagingSenderId: "981257980645",
+          appId: "1:981257980645:web:acd48fb87e66b71971620c",
+          measurementId: "G-V4ZXBG48ET"
+        };
+      
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+      </script>
+    <!-- Custom Cursor Elements -->
+    <div id="cursor-outer"></div>
+    <div id="cursor-inner"></div>
+
+    <header>
+        <nav>
+            <h1 class="bounce-text">Portfolio</h1>
+            <div class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#profile">About</a>
+                <a href="#Skills">Skills</a>
+                <a href="#philosophy">Philosophy</a>
+            </div>
+        </nav>
+        <div class="header-content">
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <img src="download.jpg" alt="Shakthi" class="profile-photo">
+                        <div class="header-text">
+                            <h2>Hello, I'm <span class="spin-text">Shakthi</span></h2>
+                        </div>
+                    </div>
+                    <div class="flip-card-back">
+                        <div class="tarot-design">
+                            <h3>Stand: Starlight Coder</h3>
+                            <p><strong>Strengths:</strong> Creative problem-solving, adaptability, relentless learning, strong coding intuition.</p>
+                            <p style="margin-bottom: 0px;"><strong>Weaknesses:</strong> Overthinking details, occasional procrastination, perfectionism under pressure.</p>
+                            <canvas id="radar-chart" width="200" height="200"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <button id="theme-toggle" aria-label="Toggle Dark Mode">☀️</button>
+
+    <section id="profile" class="profile-section" style="padding-bottom: 10px;">
+        <h3>About Me</h3>
+        <div class="custom-carousel">
+            <div class="carousel-container">
+                <div class="carousel-slide" data-index="0">
+                    <div class="slide-content">
+                        <h4>My Journey</h4>
+                        <p>I began my career as a self-taught developer, driven by curiosity and a passion for creating digital experiences. Over the years, I've honed my skills through hands-on projects and continuous learning, always seeking to push the boundaries of what's possible.</p>
+                    </div>
+                </div>
+                <div class="carousel-slide" data-index="1">
+                    <div class="slide-content">
+                        <h4>Professional Life</h4>
+                        <p>With over 5 years of experience in the tech industry, I've had the privilege of working on diverse projects ranging from e-commerce platforms to interactive web applications. My focus has always been on creating intuitive, user-friendly experiences.</p>
+                    </div>
+                </div>
+                <div class="carousel-slide" data-index="2">
+                    <div class="slide-content">
+                        <h4>Personal Interests</h4>
+                        <p>Beyond coding, I'm an avid photographer and outdoor enthusiast. I find that these activities not only provide a necessary creative outlet but also inspire my approach to design and problem-solving in unexpected ways.</p>
+                    </div>
+                </div>
+                <div class="carousel-slide" data-index="3">
+                    <div class="slide-content">
+                        <h4>Future Goals</h4>
+                        <p>Looking ahead, I'm excited about exploring emerging technologies like AR/VR and contributing to projects that make a positive impact. I believe in technology as a force for good and aim to be part of that positive change.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-controls">
+                <button class="carousel-btn prev-btn">❮</button>
+                <div class="carousel-dots"></div>
+                <button class="carousel-btn next-btn">❯</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="philosophy" class="philosophy-section">
+        <h3 style="margin-top:10px">My Philosophy & Worldview</h3>
+        <div class="philosophy-grid">
+            <div class="philosophy-card">
+                <img src="philo.jpg" alt="Life Philosophy">
+                <h4>Life Philosophy</h4>
+                <p>I believe in continuous growth and embracing challenges as opportunities. My approach to life is guided by curiosity, empathy, and a desire to create meaningful impact through my work and relationships.</p>
+                <p>The Japanese concept of "Kaizen" - continuous improvement - resonates deeply with me. Every day presents a new chance to learn, refine, and evolve.</p>
+            </div>
+            <div class="philosophy-card">
+                <img src="life.png" alt="Learning About Life">
+                <h4>Learning About Life</h4>
+                <p>I've learned from successes and failures. I've learned that authenticity and resilience are key to navigating life's complexities. The most valuable lessons often come from unexpected places.</p>
+                <p>I've discovered that balance is essential - between work and rest, ambition and contentment, planning and spontaneity.</p>
+            </div>
+            <div class="philosophy-card">
+                <img src="world.jpeg" alt="How I See the World">
+                <h4>How I See the World</h4>
+                <p>I see the world as an interconnected system where small actions can create ripple effects. Technology, when used mindfully, has tremendous potential to solve global challenges and bring people together.</p>
+                <p>I believe in the power of diverse perspectives and that the most innovative solutions emerge when different viewpoints converge.</p>
+            </div>
+            <div class="philosophy-card">
+                <img src="aspire.jpg" alt="Aspirations for My Future Self">
+                <h4>Aspirations for My Future Self</h4>
+                <p>I aspire to continue growing as a creator and thinker, to contribute meaningfully to projects that have positive social impact and to maintain a sense of wonder about the world.</p>
+                <p>My future self will hopefully have mastered the art of balancing ambition with presence, having built a body of work I'm proud of while nurturing deep connections with people and places.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="education" class="education-section">
+        <h3>My Academic Journey</h3>
+        <div class="education-grid">
+            <div class="education-card">
+                <img src="degree.jpg" alt="Bachelor's Degree">
+                <h4>Bachelor of Engineering</h4>
+                <p><strong>Institution:</strong> Anna University</p>
+                <p><strong>Duration:</strong> 2019 - 2025</p>
+                <p><strong>Major:</strong> Electronics and Communications Engineering</p>
+                <p>Graduated with a focus on software development and emerging Electronics technologies.</p>
+            </div>
+            <div class="education-card">
+                <img src="jc.jpg" alt="Junior College">
+                <h4>Junior College</h4>
+                <p><strong>Course:</strong> HSC</p>
+                <p><strong>Major:</strong> Science(Geology)</p>
+                <p><strong>Year:</strong> 2019</p>
+                <p>One of the best times of my life where I found my closest friends.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="projects-section">
+        <h3>My Stellar Projects</h3>
+        <div class="projects-grid">
+            <div class="project-card">
+                <h4>Cosmic Dashboard</h4>
+                <p>A responsive admin dashboard with real-time data visualization.</p>
+                <div class="project-tech">
+                    <span class="tech-btn">React</span>
+                    <span class="tech-btn">Node.js</span>
+                </div>
+            </div>
+            <div class="project-card">
+                <h4>Galaxy Portfolio</h4>
+                <p>This very portfolio! A showcase of my skills with interactive cosmic elements.</p>
+                <div class="project-tech">
+                    <span class="tech-btn">HTML5</span>
+                    <span class="tech-btn">CSS3</span>
+                    <span class="tech-btn">JavaScript</span>
+                </div>
+            </div>
+            <div class="project-card">
+                <h4>Snake</h4>
+                <p>A recreation of the Snake gem using React UI</p>
+                <div class="project-tech">
+                    <span class="tech-btn">Node.js</span>
+                    <span class="tech-btn">Firebase</span>
+                    <span class="tech-btn">React Hooks</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="Skills" class="skills-section">
+        <h3>My Cosmic Skillsets</h3>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <h4>React</h4>
+                
+                <p>3+ years of experience in building dynamic, component-based web applications.</p>
+                <a href="https://cobra-krack-version-emergence.firebaseapp.com/" target="_blank">View Project: Snake</a>
+            </div>
+            <div class="skill-card">
+                <h4>Java</h4>
+                
+                <p>Used the MVC standards to build projects like data management systems and solve complex DSA problems.</p>
+            </div>
+            <div class="skill-card">
+                <h4>JavaScript</h4>
+                
+                <p>Proficient in ES6+, used extensively in all my web development projects.</p>
+            </div>
+            <div class="skill-card">
+                <h4>Node.js</h4>
+                
+                <p>Built scalable back-end services for real-time applications.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-info">
+                <h3>Contact Me</h3>
+                <p><strong>Email:</strong> shakthiganeshan.thevar@psiog.com</p>
+                <p><strong>Phone:</strong> +91-8976152541</p>
+                <p><strong>Location:</strong> Chennai, Tamil Nadu, IN</p>
+            </div>
+            <div class="footer-social">
+                <h3>Connect With Me</h3>
+                <div class="social-icons">
+                    <a href="https://linkedin.com/in/yourprofile" target="_blank" aria-label="LinkedIn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="social-icon">
+                            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                            <rect x="2" y="9" width="4" height="12"></rect>
+                            <circle cx="4" cy="4" r="2"></circle>
+                        </svg>
+                    </a>
+                    <a href="https://github.com/yourusername" target="_blank" aria-label="GitHub">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="social-icon">
+                            <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                        </svg>
+                    </a>
+                    <a href="https://twitter.com/yourusername" target="_blank" aria-label="Twitter">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="social-icon">
+                            <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path>
+                        </svg>
+                    </a>
+                    <a href="https://instagram.com/yourprofile" target="_blank" aria-label="Instagram">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="social-icon">
+                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                        </svg>
+                    </a>
+                    <a href="https://dribbble.com/yourprofile" target="_blank" aria-label="Dribbble">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="social-icon">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <path d="M8.56 2.75c4.37 6.03 6.02 9.42 8.03 17.72m2.54-15.38c-3.72 4.35-8.94 5.66-16.88 5.85m19.5 1.9c-3.5-.93-6.63-.82-8.94 0-2.58.92-5.01 2.86-7.44 6.32"></path>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 Shakthi. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
