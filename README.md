@@ -26,15 +26,6 @@ The Portfolio Website is a personal showcase application designed to highlight S
 ## Database Structure
 No traditional database is used. Firebase Analytics is integrated for tracking user interactions, with the configuration stored in the HTML:
 ```javascript
-const firebaseConfig = {
-    apiKey: "AIzaSyBt1Yznxen3pbSvK0hQRFSUaLQzCZgnuJA",
-    authDomain: "portfolio-b4aec.firebaseapp.com",
-    projectId: "portfolio-b4aec",
-    storageBucket: "portfolio-b4aec.firebasestorage.app",
-    messagingSenderId: "981257980645",
-    appId: "1:981257980645:web:acd48fb87e66b71971620c",
-    measurementId: "G-V4ZXBG48ET"
-};
 
 
 <!DOCTYPE html>
