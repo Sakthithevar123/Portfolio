@@ -1,3 +1,137 @@
+# Portfolio Website Documentation
+
+## Overview
+The Portfolio Website is a personal showcase application designed to highlight Shakthi's skills, projects, education, philosophy, and professional journey. It features an interactive, visually appealing design with custom animations, a dark mode toggle, and a unique JoJo-inspired "Stand" theme. Built with a lightweight frontend stack, it integrates Firebase Analytics for tracking and uses Chart.js for dynamic visualizations.
+
+## Features
+- **Custom Cursor**: A dual-ring cursor effect with smooth animations.
+- **Theme Toggle**: Light/Dark mode switch with local storage persistence.
+- **Interactive Header**: Flip card with profile photo and radar chart stats.
+- **Custom Carousel**: 3D carousel for the "About Me" section with swipe and autoplay support.
+- **Philosophy Grid**: Card-based layout for life philosophy and worldview.
+- **Education & Projects**: Grid layouts showcasing academic and project details.
+- **Skills Section**: Highlighted skill cards with hover effects.
+- **Radar Chart**: JoJo-inspired visualization of strengths and weaknesses.
+- **Responsive Design**: Adapts to various screen sizes.
+- **Social Links**: Footer with animated social media icons.
+
+## Technical Stack
+- **Frontend**: HTML5, CSS3, JavaScript (Vanilla JS)
+- **Libraries**: 
+  - Chart.js (Radar chart visualization)
+  - Firebase SDK (Analytics)
+- **Hosting**: Github Pages
+- **Analytics**: Firebase Analytics
+
+## Database Structure
+No traditional database is used. Firebase Analytics is integrated for tracking user interactions, with the configuration stored in the HTML:
+```javascript
+const firebaseConfig = {
+    apiKey: "AIzaSyBt1Yznxen3pbSvK0hQRFSUaLQzCZgnuJA",
+    authDomain: "portfolio-b4aec.firebaseapp.com",
+    projectId: "portfolio-b4aec",
+    storageBucket: "portfolio-b4aec.firebasestorage.app",
+    messagingSenderId: "981257980645",
+    appId: "1:981257980645:web:acd48fb87e66b71971620c",
+    measurementId: "G-V4ZXBG48ET"
+};
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- For radar chart -->
+</head>
+<body>
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-analytics.js";
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+          apiKey: "AIzaSyBt1Yznxen3pbSvK0hQRFSUaLQzCZgnuJA",
+          authDomain: "portfolio-b4aec.firebaseapp.com",
+          projectId: "portfolio-b4aec",
+          storageBucket: "portfolio-b4aec.firebasestorage.app",
+          messagingSenderId: "981257980645",
+          appId: "1:981257980645:web:acd48fb87e66b71971620c",
+          measurementId: "G-V4ZXBG48ET"
+        };
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+    </script>
+    <!-- Code Explanation: This script initializes Firebase Analytics using ES6 modules. `type="module"` allows modern JavaScript imports. `firebaseConfig` holds the project's credentials, `initializeApp` sets up Firebase, and `getAnalytics` enables tracking of user interactions like page views. -->
+
+    <!-- Custom Cursor Elements -->
+    <div id="cursor-outer"></div>
+    <div id="cursor-inner"></div>
+    <!-- Code Explanation: These divs create a custom cursor with two parts: `cursor-outer` (a larger ring) and `cursor-inner` (a smaller dot). Their positions are updated via JavaScript to follow the mouse, styled with CSS to avoid interfering with page elements (`pointer-events: none`). -->
+
+    <header>
+        <nav>
+            <h1 class="bounce-text">Portfolio</h1>
+            <div class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#profile">About</a>
+                <a href="#Skills">Skills</a>
+                <a href="#philosophy">Philosophy</a>
+            </div>
+        </nav>
+        <div class="header-content">
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <img src="download.jpg" alt="Shakthi" class="profile-photo">
+                        <div class="header-text">
+                            <h2>Hello, I'm <span class="spin-text">Shakthi</span></h2>
+                        </div>
+                    </div>
+                    <div class="flip-card-back">
+                        <div class="tarot-design">
+                            <h3>Stand: Starlight Coder</h3>
+                            <p><strong>Strengths:</strong> Creative problem-solving, adaptability, relentless learning, strong coding intuition.</p>
+                            <p style="margin-bottom: 0px;"><strong>Weaknesses:</strong> Overthinking details, occasional procrastination, perfectionism under pressure.</p>
+                            <canvas id="radar-chart" width="200" height="200"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Code Explanation: The header includes a nav with a bouncing "Portfolio" title and links. The flip card has nested divs (`flip-card-inner`, `flip-card-front`, `flip-card-back`) for a 3D hover effect (CSS-driven). The front shows a photo and spinning name, while the back displays a JoJo-inspired "Stand" with stats and a radar chart on a canvas. -->
+
+    <button id="theme-toggle" aria-label="Toggle Dark Mode">☀️</button>
+    <!-- Code Explanation: This button toggles light/dark modes. Fixed positioning keeps it in the bottom-right corner. JavaScript changes its icon (`☀️` or `🌙`) and toggles the `dark-mode` class, with `aria-label` for accessibility. -->
+
+    <section id="profile" class="profile-section" style="padding-bottom: 10px;">
+        <h3>About Me</h3>
+        <div class="custom-carousel">
+            <div class="carousel-container">
+                <div class="carousel-slide" data-index="0">
+                    <div class="slide-content">
+                        <h4>My Journey</h4>
+                        <p>I began my career as a self-taught developer, driven by curiosity and a passion for creating digital experiences. Over the years, I've honed my skills through hands-on projects and continuous learning, always seeking to push the boundaries of what's possible.</p>
+                    </div>
+                </div>
+                <!-- Additional slides omitted for brevity -->
+            </div>
+            <div class="carousel-controls">
+                <button class="carousel-btn prev-btn">❮</button>
+                <div class="carousel-dots"></div>
+                <button class="carousel-btn next-btn">❯</button>
+            </div>
+        </div>
+    </section>
+    <!-- Remaining sections (Philosophy, Education, Projects, Skills, Footer) follow a similar structure with grids and cards; omitted for brevity -->
+
+    <script src="script.js"></script>
+</body>
+</html>
 /* Base Styles - Sets up the foundational look of the page */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -1047,3 +1181,215 @@ Animations Explanation:
 - `fadeInUp`: Fades elements in while lifting them, used for scroll animations.
 - Why: Enhances visual interest and user engagement.
 */
+
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    // Custom cursor implementation
+    const cursorOuter = document.getElementById('cursor-outer');
+    const cursorInner = document.getElementById('cursor-inner');
+    let mouseX = 0, mouseY = 0, innerX = 0, innerY = 0;
+    const speed = 0.3;
+
+    document.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+    });
+
+    function updateCursor() {
+        cursorOuter.style.left = mouseX - cursorOuter.offsetWidth / 2 + 'px';
+        cursorOuter.style.top = mouseY - cursorOuter.offsetHeight / 2 + 'px';
+        innerX += (mouseX - innerX) * speed;
+        innerY += (mouseY - innerY) * speed;
+        cursorInner.style.left = innerX - cursorInner.offsetWidth / 2 + 'px';
+        cursorInner.style.top = innerY - cursorInner.offsetHeight / 2 + 'px';
+        requestAnimationFrame(updateCursor);
+    }
+    updateCursor();
+    // Code Explanation: Creates a custom cursor. `mousemove` tracks mouse position. `updateCursor` runs in an animation loop (`requestAnimationFrame`), moving `cursorOuter` instantly and `cursorInner` with a lag (eased by `speed`), centered by offsetting half their size.
+
+    // Dark Mode Toggle
+    const themeToggle = document.getElementById('theme-toggle');
+    const body = document.body;
+    if (localStorage.getItem('theme') === 'dark') {
+        body.classList.add('dark-mode');
+        themeToggle.textContent = '🌙';
+    }
+    themeToggle.addEventListener('click', () => {
+        body.classList.toggle('dark-mode');
+        themeToggle.textContent = body.classList.contains('dark-mode') ? '🌙' : '☀️';
+        localStorage.setItem('theme', body.classList.contains('dark-mode') ? 'dark' : 'light');
+    });
+    // Code Explanation: Manages theme switching. Checks `localStorage` on load to apply the saved theme. Clicking `themeToggle` toggles `dark-mode`, updates the icon, and saves the preference for persistence.
+
+    // Scroll Animation
+    const animateOnScroll = () => {
+        const elements = document.querySelectorAll('.header-content, .profile-section h3, .custom-carousel, .philosophy-card, .education-card, .project-card, .skill-card, .site-footer');
+        elements.forEach(element => {
+            const position = element.getBoundingClientRect();
+            if (position.top < window.innerHeight * 0.85 && !element.classList.contains('animated')) {
+                element.classList.add('animated');
+            }
+        });
+    };
+    window.addEventListener('scroll', animateOnScroll);
+    animateOnScroll();
+    // Code Explanation: Triggers fade-in animations when elements enter 85% of the viewport. `getBoundingClientRect` checks position, and `animated` class prevents re-animation. Runs on scroll and initially.
+
+    // Initialize the custom carousel
+    function initCustomCarousel() {
+        const slides = document.querySelectorAll('.carousel-slide');
+        let currentIndex = 0;
+        const totalSlides = slides.length;
+        function updateSlides() {
+            const prevIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+            const nextIndex = (currentIndex + 1) % totalSlides;
+            slides.forEach(slide => slide.classList.remove('active', 'prev', 'next'));
+            slides[currentIndex].classList.add('active');
+            slides[prevIndex].classList.add('prev');
+            slides[nextIndex].classList.add('next');
+            document.querySelectorAll('.carousel-dot').forEach((dot, i) => dot.classList.toggle('active', i === currentIndex));
+        }
+        document.querySelector('.prev-btn').addEventListener('click', () => {
+            currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+            updateSlides();
+        });
+        document.querySelector('.next-btn').addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % totalSlides;
+            updateSlides();
+        });
+        updateSlides();
+        setInterval(() => {
+            currentIndex = (currentIndex + 1) % totalSlides;
+            updateSlides();
+        }, 5000);
+    }
+    initCustomCarousel();
+    // Code Explanation: Sets up the carousel. `updateSlides` manages slide states using modular arithmetic for wrapping. Buttons update `currentIndex` and trigger `updateSlides`, while `setInterval` enables 5-second autoplay. Dots sync with the active slide.
+
+    // Initialize Radar Chart
+    const ctx = document.getElementById('radar-chart').getContext('2d');
+    new Chart(ctx, {
+        type: 'radar',
+        data: {
+            labels: ['Strength', 'Speed', 'Precision', 'Endurance', 'Creativity', 'Intelligence'],
+            datasets: [{
+                label: 'Shakthi\'s Stats',
+                data: [60, 75, 80, 70, 90, 85],
+                backgroundColor: 'rgba(255, 69, 0, 0.2)',
+                borderColor: 'rgba(255, 69, 0, 1)',
+                borderWidth: 2,
+                pointBackgroundColor: 'rgba(255, 215, 0, 1)'
+            }]
+        },
+        options: {
+            scales: { r: { beginAtZero: true, max: 100, ticks: { display: false } } },
+            plugins: { legend: { display: false } }
+        }
+    });
+    // Code Explanation: Creates a radar chart with Chart.js on the flip card's back. Defines six stats (0-100) with orange fill and gold points. Options hide ticks and legend, setting a clean 0-100 scale for a JoJo-inspired look.
+});
+
+
+# Portfolio Website: Key Components and Beyond
+
+This document covers the key components, implementation details, security considerations, performance optimizations, known limitations, future enhancements, troubleshooting guide, support information, version history, and license details of the Portfolio Website.
+
+## Key Components
+
+### Header
+- **Description**: The header features an animated "Portfolio" title with a bounce effect, a flip card displaying a profile photo on the front and "Stand" stats on the back, and navigation links with hover animations.
+- **Details**:
+  - **Animated Title**: The "Portfolio" text uses a CSS `bounce` animation for a dynamic effect.
+  - **Flip Card**: A 3D flip card toggles between a profile photo and a JoJo-inspired "Stand" card with a radar chart.
+  - **Navigation Links**: Links to Home, About, Skills, and Philosophy sections with hover scaling and color changes.
+
+### Profile Section
+- **Description**: A 3D carousel with four slides showcasing different aspects of Shakthi's life: Journey, Professional Life, Interests, and Goals.
+- **Details**:
+  - **3D Carousel**: Implements a 3D transform effect with prev/next slide visibility, controlled by buttons, dots, swipe gestures, and autoplay (every 5 seconds).
+  - **Slides**: Each slide contains a title and description, styled with responsive design for various screen sizes.
+
+### Philosophy Section
+- **Description**: A four-card grid detailing Shakthi's life philosophy, learning approach, worldview, and aspirations, with hover animations and staggered fade-in effects.
+- **Details**:
+  - **Grid Layout**: Displays four cards in a 2x2 grid (1 column on mobile) with images and text.
+  - **Animations**: Cards fade in with delays (0.2s increments) and lift/rotate on hover for interactivity.
+
+### Education Section
+- **Description**: A two-card grid showcasing Shakthi's academic history, including images and details.
+- **Details**:
+  - **Grid Layout**: Two cards for Bachelor’s degree and Junior College, collapsing to one column on mobile.
+  - **Content**: Includes institution, duration, major, and personal notes, with fade-in animations.
+
+### Projects Section
+- **Description**: A three-card grid highlighting key projects with tech stack badges.
+- **Details**:
+  - **Grid Layout**: Three projects (Cosmic Dashboard, Galaxy Portfolio, Snake) in a 3-column grid (1 column on mobile).
+  - **Tech Badges**: Each card lists technologies used (e.g., React, Node.js), with hover scaling effects.
+
+### Skills Section
+- **Description**: A four-card grid detailing Shakthi's skillsets with hover effects and project links where applicable.
+- **Details**:
+  - **Grid Layout**: Four skills (React, Java, JavaScript, Node.js) in a 2x2 grid (1 column on mobile).
+  - **Interactivity**: Cards feature hover borders, gradient overlays, and links (e.g., to the Snake project).
+
+### Footer
+- **Description**: Contains contact information and social media links with hover animations.
+- **Details**:
+  - **Content**: Email, phone, location, and social icons (LinkedIn, GitHub, Twitter, Instagram, Dribbble).
+  - **Animations**: Social icons scale and rotate on hover, with a fade-in effect on scroll.
+
+## Implementation Details
+- **Animations**: Custom cursor with outer ring instant movement and inner dot lagging; flip card with 3D rotation; carousel with 3D transform; fade-ins on scroll.
+- **UI Components**: Consistent card design with shadows and rounded corners, responsive grids, interactive buttons with scale/rotate effects.
+- **Responsive Design**: Grid layouts collapse to single column on mobile (<768px), adjusted carousel and flip card sizes.
+- **Analytics**: Firebase Analytics tracks user interactions without additional UI.
+
+## Security Considerations
+- Static content with no user input reduces attack surface.
+- Firebase API key exposed in client-side code (consider server-side analytics for production).
+
+## Performance Optimizations
+- Lazy-loaded animations triggered by viewport.
+- Efficient event listeners with debouncing (implicit via `requestAnimationFrame`).
+- Lightweight CSS transitions for smooth effects.
+
+## Known Limitations
+- No backend data storage or dynamic content.
+- Limited browser testing (assumes modern browser support).
+- Static image assets (e.g., `download.jpg`) must exist locally.
+
+## Future Enhancements
+- Dynamic project loading via CMS or API.
+- Contact form integration.
+- Advanced animations (e.g., particle effects).
+- Accessibility improvements (ARIA labels, keyboard navigation).
+- Performance monitoring with Lighthouse.
+
+## Troubleshooting Guide
+1. **Cursor Issues**
+   - Check `mousemove` listener and `requestAnimationFrame` loop.
+   - Verify CSS `pointer-events: none` on cursor elements.
+2. **Carousel Malfunctions**
+   - Ensure slide indices align with dot controls.
+   - Check touch event thresholds for swipe detection.
+3. **Radar Chart Errors**
+   - Confirm Chart.js CDN loaded correctly.
+   - Validate canvas element presence in DOM.
+4. **Theme Toggle Problems**
+   - Verify `localStorage` interaction and CSS class toggling.
+
+## Support
+For technical support or feature requests, please contact:
+- **Email**: shakthiganeshan.thevar@psiog.com
+- **Phone**: +91-8976152541
+
+## Version History
+- **Current Version**: 1.0
+- **Last Updated**: March 18, 2025
+
+## License
+[Your license information]
+
+---
