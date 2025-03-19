@@ -25,7 +25,6 @@ The Portfolio Website is a personal showcase application designed to highlight S
 
 ## Database Structure
 No traditional database is used. Firebase Analytics is integrated for tracking user interactions, with the configuration stored in the HTML:
-```javascript
 
 
 <!DOCTYPE html>
@@ -44,13 +43,13 @@ No traditional database is used. Firebase Analytics is integrated for tracking u
         import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-analytics.js";
         // Your web app's Firebase configuration
         const firebaseConfig = {
-          apiKey: "AIzaSyBt1Yznxen3pbSvK0hQRFSUaLQzCZgnuJA",
-          authDomain: "portfolio-b4aec.firebaseapp.com",
-          projectId: "portfolio-b4aec",
-          storageBucket: "portfolio-b4aec.firebasestorage.app",
-          messagingSenderId: "981257980645",
-          appId: "1:981257980645:web:acd48fb87e66b71971620c",
-          measurementId: "G-V4ZXBG48ET"
+         apiKey: "FIREBASE_API_KEY",
+          authDomain: "FIREBASE_AUTH_DOMAIN",
+          projectId: "FIREBASE_PROJECT_ID",
+          storageBucket: "FIREBASE_STORAGE_BUCKET",
+          messagingSenderId: "FIREBASE_MESSAGING_SENDER_ID",
+          appId: "FIREBASE_APP_ID",
+          measurementId: "FIREBASE_MEASUREMENT_ID"
         };
         // Initialize Firebase
         const app = initializeApp(firebaseConfig);
